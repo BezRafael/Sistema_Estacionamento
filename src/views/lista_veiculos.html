@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/lista_veiculos.css">
+    <title>Veículos Cadastrados</title>
+</head>
+<body>
+    <div id="conteiner_tabela">
+        <table id="tabela-veiculos">
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Placa</th>
+                    <th>Horário de Entrada</th>
+                </tr>
+            </thead>
+
+            <tbody id="garagem"></tbody>
+        </table>
+    </div>
+
+    <div id="area_acoes">
+        <button id="botao_voltar" onclick="voltar()">
+            <img id="img_voltar" src="../public/img/icon_voltar.png" alt="">
+        </button>
+
+        <div id="acao_remover">
+            <input id="input_removerPlaca" type="text" placeholder="Digite a Placa">
+            <button id="botao_remover" onclick="remover_veiculo()">X</button>
+        </div>
+    </div>
+
+    <h4 style="font-size: 25px;" id="vagas_disponiveis">Vagas Disponíveis: 0</h4>
+
+    <!-- Modal -->
+    <div id="modal_extrato">
+        <div id="modal_content">
+            <span id="close_modal">&times;</span>
+            <h2>Extrato</h2>
+            <p id="extrato_detalhes"></p>
+        </div>
+    </div>
+
+    <script src="../public/js/cadastro_veiculo.js"></script>
+</body>
+</html>

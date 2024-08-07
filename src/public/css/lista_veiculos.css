@@ -1,0 +1,157 @@
+/*Reset*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000814;
+    height: 100vh;
+}
+
+/*Área da lista de veículos cadastrados*/
+#conteiner_tabela {
+    width: 1000px;
+    overflow-x: auto;
+    max-height: 400px; /* Define uma altura máxima para o contêiner */
+    margin: 20px 0;
+    border: 1px solid #dddddd; /* Adiciona uma borda ao contêiner */
+}
+
+#tabela-veiculos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+#tabela-veiculos th {
+    background-color: #00274d; /* Fundo azul escuro */
+    color: white; /* Fonte branca */
+    padding: 8px;
+    border: 1px solid #dddddd;
+}
+
+#tabela-veiculos td {
+    background-color: white; /* Fundo branco */
+    padding: 8px;
+    border: 1px solid #dddddd; /* Linhas em cada célula */
+}
+
+#tabela-veiculos tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+/*Área das ações (voltar e remover veículo)*/
+#area_acoes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    height: 40px;
+}
+
+#botao_voltar{
+    border: none;
+    background-color: #FFC300;
+    border-radius: 8px;
+    width: 80px;
+    height: 40px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+#img_voltar{
+    width: 30px;
+    height: 30px;
+    transition: 300ms;
+}
+
+#img_voltar:hover{
+    width: 33px;
+    height: 33px;
+    transition: 300ms;
+}
+
+#acao_remover{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    gap: 10px;
+}
+
+input{
+    border: none;
+    text-align: center;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#botao_remover{
+    border: none;
+    background-color: rgb(255, 80, 80);
+    border-radius: 8px;
+    width: 50px;
+    height: 40px;
+    transition: 300ms;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    transition: 300ms;
+}
+
+#botao_remover:hover{
+    transition: 300ms;
+    font-size: 25px;
+}
+
+/*Modal (nota fiscal)*/
+#modal_extrato{
+    border-radius: 20px;
+    width: 380px;
+    height: 200px;
+    background-color: #FFFFFF;
+}
+
+#modal_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#close_modal{
+    margin-left: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00274d;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: 300ms;
+    font-weight: bold;
+}
+
+#close_modal:hover{
+    transition: 300ms;
+    font-size: 20px;
+}

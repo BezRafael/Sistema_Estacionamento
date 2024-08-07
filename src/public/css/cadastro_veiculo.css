@@ -1,0 +1,91 @@
+/*Reset*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000814;
+    height: 100vh;
+    gap: 10px;
+}
+
+/*Área de cadastro dos veículos*/
+#area_cadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #003566;
+    border-radius: 20px;
+    width: 500px;
+    height: 500px;
+    font-family: monospace;
+    color: white;
+}
+
+label{
+    margin-bottom: -40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input{
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+}
+
+#botao_cadastro{
+    background-color: #FFC300;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+    transition: 300ms;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#botao_cadastro:hover{
+    transition: 300ms;
+    font-size: 16px;
+}
+
+
+/*Botão de exibir a lista de veículos*/
+#area_botao{
+    display: flex;
+    justify-content: right;
+    width: 480px;
+}
+
+
+#botao_exibirLista{
+    border: none;
+    background-color: #FFC300;
+    border-radius: 8px;
+    width: 80px;
+    height: 40px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+#img_lista{
+    transition: 300ms;
+    width: 30px;
+    height: 30px;
+}
+
+#img_lista:hover{
+    transition: 300ms;
+    width: 33px;
+    height: 33px;
+}
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/cadastro_veiculo.css">
+    <title>Cadastro de Veículo</title>
+</head>
+<body>
+   <!--Área de cadastro onde irá inserir os dados do veículo-->    
+    <div id="area_cadastro">
+        <h1 style="font-size:40px;">Cadastro de Veículo</h1>
+        
+        <label for="">Modelo</label>
+        <input id="modelo_veiculo" type="text" style="text-align: center;" autocomplete="off">
+
+        <label for="">Placa</label>
+        <input id="placa_veiculo" type="text" style="text-align: center;" autocomplete="off">
+
+        <button id="botao_cadastro" onclick="cadastrar_veiculo()">Cadastrar</button>
+
+        <h4 style="font-size: 25px;" id="status"></h4>
+        <h4 style="font-size: 25px;" id="vagas_disponiveis">Vagas Disponíveis: 0</h4>
+    </div>
+
+    <!--Botão onde irá abrir a lista de veículos cadastrados-->
+    <div id="area_botao">
+        <button id="botao_exibirLista" onclick="abrir_lista()">
+            <img id="img_lista" src="../public/img/icon_lista.png" alt="">
+        </button>
+    </div>
+
+    <script src="../public/js/cadastro_veiculo.js"></script>
+</body>
+</html>
