@@ -15,7 +15,7 @@ const createWindow = () => {
 
     win.maximize();
 
-    win.loadFile('./src/views/tela_inicial.html');
+    win.loadFile('./src/views/cadastro_veiculo.html');
 };
 
   

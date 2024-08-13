@@ -6,12 +6,68 @@
 
 body{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     background-color: #000814;
     height: 100vh;
 }
+
+
+/*Área menu navegação*/
+#menu_navegacao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #003566;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    width: 300px;
+    height: 300px;
+}
+
+#area_navegacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+    gap: 50px;
+}
+
+#area_sair{
+    border: 1px solid transparent;
+}
+
+.botao_nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.botao_nav:hover{
+    font-size: 19px;
+    transition: 300ms;
+}
+
+/*Área geral (lista, remover, extrato)*/
+#conteiner_geral{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
 
 /*Área da lista de veículos cadastrados*/
 #conteiner_tabela {
@@ -49,50 +105,41 @@ body{
     background-color: #f1f1f1;
 }
 
-
-
-/*Área das ações (voltar e remover veículo)*/
-#area_acoes{
+/*Área (remover, extrato)*/
+#conteiner_remover-extrato{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    border: 1px solid transparent;
     width: 1000px;
-    height: 40px;
 }
 
-#botao_voltar{
-    border: none;
-    background-color: #FFC300;
-    border-radius: 8px;
-    width: 80px;
-    height: 40px;
-    transition: 300ms;
-    cursor: pointer;
-}
-
-#img_voltar{
-    width: 30px;
-    height: 30px;
-    transition: 300ms;
-}
-
-#img_voltar:hover{
-    width: 33px;
-    height: 33px;
-    transition: 300ms;
+/*Área das ações (voltar e remover veículo)*/
+#titulo_removerVeiculo{
+    color: white;
+    background-color: #003566;
+    width: 280px;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #acao_remover{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    height: 40px;
-    gap: 10px;
+    background-color: lightgray;
+    width: 350px;
+    height: 200px;
+    border-radius: 20px;
 }
 
 input{
-    border: none;
+    border: 2px solid #003566;
     text-align: center;
     border-radius: 20px;
     width: 300px;

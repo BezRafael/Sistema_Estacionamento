@@ -6,13 +6,61 @@
 
 body{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     background-color: #000814;
     height: 100vh;
     gap: 10px;
 }
+
+/*Área menu navegação*/
+#menu_navegacao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #003566;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    width: 300px;
+    height: 300px;
+}
+
+#area_navegacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+    gap: 50px;
+}
+
+#area_sair{
+    border: 1px solid transparent;
+}
+
+.botao_nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.botao_nav:hover{
+    font-size: 19px;
+    transition: 300ms;
+}
+
+
 
 /*Área de cadastro dos veículos*/
 #area_cadastro{

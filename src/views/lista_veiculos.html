@@ -7,42 +7,49 @@
     <title>Veículos Cadastrados</title>
 </head>
 <body>
-    <div id="conteiner_tabela">
-        <table id="tabela-veiculos">
-            <thead>
-                <tr>
-                    <th>Modelo</th>
-                    <th>Placa</th>
-                    <th>Horário de Entrada</th>
-                </tr>
-            </thead>
-
-            <tbody id="garagem"></tbody>
-        </table>
-    </div>
-
-    <div id="area_acoes">
-        <button id="botao_voltar" onclick="voltar()">
-            <img id="img_voltar" src="../public/img/icon_voltar.png" alt="" title="Voltar">
-        </button>
-
-        <div id="acao_remover">
-            <input id="input_removerPlaca" type="text" placeholder="Digite a Placa">
-            <button id="botao_remover" onclick="remover_veiculo()">X</button>
+    <div id="menu_navegacao">
+        <div id="area_navegacao">
+            <button class="botao_nav" onclick="voltar()">Cadastrar Veículo</button>
+            <button class="botao_nav">Lista de Veículos</button>
+        </div>
+        <div id="area_sair">
+            <button class="botao_nav" style="background-color: lightcoral;">Fechar App</button>
         </div>
     </div>
 
-    <h4 style="font-size: 25px;" id="vagas_disponiveis">Vagas Disponíveis: 0</h4>
+    
+    <div id="conteiner_geral">
+        <div id="conteiner_tabela">
+            <table id="tabela-veiculos">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Horário de Entrada</th>
+                    </tr>
+                </thead>
 
-    <!-- Modal -->
-    <div id="modal_extrato">
-        <div id="modal_content">
-            <span id="close_modal">&times;</span>
-            <h2>Extrato</h2>
-            <p id="extrato_detalhes"></p>
+                <tbody id="garagem"></tbody>
+            </table>
+        </div>
+
+        <div id="conteiner_remover-extrato">
+            <div id="acao_remover">
+                    <h2 id="titulo_removerVeiculo">Remover Veículo</h2>
+                    <input id="input_removerPlaca" type="text" placeholder="Digite a Placa">
+                    <button id="botao_remover" onclick="remover_veiculo()">X</button>
+            </div>
+
+            <!-- Modal -->
+            <div id="modal_extrato">
+                <div id="modal_content">
+                    <span id="close_modal">&times;</span>
+                    <h2>Extrato</h2>
+                    <p id="extrato_detalhes"></p>
+                </div>
+            </div>
         </div>
     </div>
-
     <script src="../public/js/cadastro_veiculo.js"></script>
 </body>
 </html>

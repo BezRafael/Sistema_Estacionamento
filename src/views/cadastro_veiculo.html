@@ -7,6 +7,15 @@
     <title>Cadastro de Veículo</title>
 </head>
 <body>
+    <div id="menu_navegacao">
+        <div id="area_navegacao">
+            <button class="botao_nav">Cadastrar Veículo</button>
+            <button class="botao_nav" onclick="abrir_lista()">Lista de Veículos</button>
+        </div>
+        <div id="area_sair">
+            <button class="botao_nav" onclick="fecharApp()" style="background-color: lightcoral">Fechar App</button>
+        </div>
+    </div>
    <!--Área de cadastro onde irá inserir os dados do veículo-->    
     <div id="area_cadastro">
         <h1 style="font-size:40px;">Cadastro de Veículo</h1>
@@ -24,11 +33,11 @@
     </div>
 
     <!--Botão onde irá abrir a lista de veículos cadastrados-->
-    <div id="area_botao">
+    <!-- <div id="area_botao">
         <button id="botao_exibirLista" onclick="abrir_lista()">
-            <img id="img_lista" src="../public/img/icon_lista.png" alt="" title="Lista de Veículos">
+            <img id="img_lista" src="../public/img/icon_lista.png" alt="">
         </button>
-    </div>
+    </div> -->
 
     <script src="../public/js/cadastro_veiculo.js"></script>
 </body>
