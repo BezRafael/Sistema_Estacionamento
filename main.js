@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, nativeTheme,shell } = require('electron');
+const { app, BrowserWindow, Menu, nativeTheme,shell, ipcMain } = require('electron');
 
 //Janela Principal
 const createWindow = () => {
@@ -7,13 +7,15 @@ const createWindow = () => {
       width: 1000,
       height: 600,
       icon: "./src/public/img/img_logo.png", //Ícone do Executável
-      resizable: false
+      fullscreen: true,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false
+      }
     });
 
     //Menu personalizado
     Menu.setApplicationMenu(Menu.buildFromTemplate(template))
-
-    win.maximize();
 
     win.loadFile('./src/views/login_usuario.html');
 };
@@ -37,34 +39,14 @@ const aboutWindow = () => {
   }
 };
 
+ipcMain.on('fechar-app', () => {
+  const windows = BrowserWindow.getAllWindows();
+  windows.forEach(window => window.close());
+  app.quit();
+});
+
 //Template do Menu
 const template = [
-  {
-    label: 'Arquivo',
-    submenu: [
-      {
-        label: 'Sair',
-        click: () => app.quit(),
-        accelerator: 'Alt+F4'
-      }
-    ]
-  },
-  {
-    label: 'Exibir',
-    submenu: [
-      {
-        label: 'Recarregar',
-        role: 'reload'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Ferramentas do Desenvolvedor',
-        role: 'toggleDevTools'
-      }
-    ]
-  },
   {
     label: 'Ajuda',
     submenu: [

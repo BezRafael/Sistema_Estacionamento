@@ -95,6 +95,12 @@ function voltar() {
     window.location.href = "../views/cadastro_veiculo.html";
 }
 
+// Função para fechar o aplicativo
+function fecharApp() {
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.send('fechar-app');
+};
+
 function remover_veiculo() {
     const placa_remover = document.getElementById('input_removerPlaca').value;
     if (!placa_remover) {
