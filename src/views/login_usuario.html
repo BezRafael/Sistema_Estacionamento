@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/login_usuario.css">
+    <title>Login Usuário</title>
+</head>
+<body>
+    
+    <figure id="conteiner_logo">
+        <img id="img_logo" src="../public/img/img_logo.svg" alt="">
+    </figure>
+
+    <div id="conteiner_login">
+        <div id="area_texto_apresentacao">
+            <h1 style="font-size: 40px;">ESTACIONE JÁ</h1>
+            <h4 style="font-size: 28px;">BEM VINDO!</h4>
+        </div>
+
+        <div id="area_login">
+            <h2 style="font-size: 35px;">Entrar</h2>
+
+            <label style="font-size: 22px;">Usuário</label>
+            <input class="inputs" id="usuario" type="text" placeholder="Digite Aqui!" autocomplete="none">
+    
+            <label style="font-size: 22px;">Senha</label>
+            <input class="inputs" id="senha" type="password" placeholder="Digite Aqui!" autocomplete="none">
+
+            <button id="botao_login" onclick="botaoEntrar()">
+                <img src="../public/img/icon_enviar.png" alt="" title="Entrar" width="35px" height="30px">
+            </button>
+
+            <h3 id="status"></h3>
+        </div>
+
+    </div>
+
+    <script src="../public/js/login_usuario.js"></script>
+</body>
+</html>
