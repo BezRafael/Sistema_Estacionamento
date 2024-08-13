@@ -11,7 +11,6 @@ body{
     align-items: center;
     background-color: #000814;
     height: 100vh;
-    gap: 10px;
 }
 
 /*Área menu navegação*/
@@ -137,3 +136,8 @@ input{
     height: 33px;
 }
 
+@media (min-width:1200px) and (max-width: 1390px) {
+    #area_cadastro{
+        margin-right: 200px;
+    }
+}

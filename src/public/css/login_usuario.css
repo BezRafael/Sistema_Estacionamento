@@ -7,11 +7,10 @@
 body{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #000814;
     height: 100vh;
-    gap: 50px;
 }
 
 
