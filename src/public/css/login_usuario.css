@@ -7,7 +7,7 @@
 body{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #000814;
     height: 100vh;
@@ -19,17 +19,14 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 100%;
+    width: 70%;
+    height: 100vh;
     border: 1px solid transparent;
-    background-color: #001D3D;
 }
 
 #img_logo{
-    width: 650px;
-    height: 650px;
-    background-color: #D0E8F9;
-    border-radius: 10%;
+    width: 100%;
+    height: 100%;
 }
 
 /**/
@@ -39,8 +36,8 @@ body{
     justify-content: center;
     align-items: center;
     border: 1px solid transparent;
-    width: 40%;
-    height: 100%;
+    width: 30%;
+    height: 100vh;
     gap: 50px
 }
 
