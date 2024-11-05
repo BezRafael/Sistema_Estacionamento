@@ -7,7 +7,7 @@
 body{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #000814;
     height: 100vh;
@@ -19,31 +19,35 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 620px;
-    height: 600px;
-    background-color: white;
-    border-radius: 50%;
+    width: 60%;
+    height: 100%;
+    border: 1px solid transparent;
+    background-color: #001D3D;
 }
 
 #img_logo{
-    width: 450px;
-    height: 450px;
+    width: 650px;
+    height: 650px;
+    background-color: #D0E8F9;
+    border-radius: 10%;
 }
 
 /**/
 #conteiner_login{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 360px;
-    height: 450px;
+    border: 1px solid transparent;
+    width: 40%;
+    height: 100%;
+    gap: 50px
 }
 
 
 #area_texto_apresentacao{
     height: 70px;
-    width: 100%;
+    width: 380px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
