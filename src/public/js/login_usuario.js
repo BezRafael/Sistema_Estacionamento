@@ -1,37 +1,34 @@
 const ipcRenderer = require('electron');
-/*
+
 const usuarioPadrao = 'Admin'
 const senhaPadrao = 'Admin'
-*/
+
+document.getElementById('botao_login').addEventListener('click', botaoEntrar);
 
 
-export default function botaoEntrar(){
-
-    //buscando os valores que o usuário inseriu no frontend
+/*
+function botaoEntrar() {
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
 
-    //Enviando uma mensagem para o processo principal (definido no main.js)
-    ipcRenderer.invoke('verificar-login', {usuario, senha})
+    ipcRenderer.invoke('verificar-login', { usuario, senha })
         .then(response => {
             const elementoStatus = document.getElementById('status');
-            if (response.sucess) {
-                elementoStatus.textContent = 'Bem Vindo!'
+            if (response.success) {
+                elementoStatus.textContent = 'Bem Vindo!';
                 elementoStatus.style.color = 'lightgreen';
-                window.location.href = 'src\views\cadastro_veiculo.html';
-            }else{
-                elementoStatus.textContent = 'Dados Incorretos!'
+                window.location.href = '../views/cadastro_veiculo.html';
+            } else {
+                elementoStatus.textContent = 'Dados Incorretos!';
                 elementoStatus.style.color = 'lightcoral';
             }
         })
-
         .catch(error => {
             console.error('Erro ao verificar Login:', error);
         });
 }
+*/
 
-
-/*
 function botaoEntrar(){
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
@@ -49,4 +46,3 @@ function botaoEntrar(){
         }
     }
 };
-*/

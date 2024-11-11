@@ -5,23 +5,22 @@ const db = require('./src/database');
 
 
 //lógica para verificar o login no banco de dados:
-ipcMain.handle('verificar-login', async (event, {usuario, senha}) => {
-  return new Promises((resovle, reject) => {
-    const query = 'SELECT FROM usuario WHERE usuario = ? AND senha = ?';
+ipcMain.handle('verificar-login', async (event, { usuario, senha }) => {
+  return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM usuario WHERE usuario = ? AND senha = ?';
 
-    db.get(query, [usuario, senha], (err, row) =>{
-      if (err) {
-        console.error('Erro ao verificar login:', err.message);
-        reject({ sucess: false, error: err.message});
-      }else if(row){
-        resovle({sucess: true});
-      }else{
-        resovle({sucess: false});
-      }
-    });
+      db.get(query, [usuario, senha], (err, row) => {
+          if (err) {
+              console.error('Erro ao verificar login:', err.message);
+              reject({ success: false, error: err.message });
+          } else if (row) {
+              resolve({ success: true });
+          } else {
+              resolve({ success: false });
+          }
+      });
   });
 });
-
 
 //Janela Principal
 const createWindow = () => {
