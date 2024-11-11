@@ -4,19 +4,90 @@ const { app, BrowserWindow, Menu, nativeTheme, shell, ipcMain } = require('elect
 const db = require('./src/database');
 
 
-//lógica para verificar o login no banco de dados:
-ipcMain.handle('verificar-login', async (event, { usuario, senha }) => {
-  return new Promise((resolve, reject) => {
-      const query = 'SELECT * FROM usuario WHERE usuario = ? AND senha = ?';
+/**/
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS config(
+      id INTEGER PRIMARY KEY,
+      vagasDisponiveis INTEGER
+    )`)
 
-      db.get(query, [usuario, senha], (err, row) => {
-          if (err) {
-              console.error('Erro ao verificar login:', err.message);
-              reject({ success: false, error: err.message });
-          } else if (row) {
-              resolve({ success: true });
+
+    db.get(`SELECT * FROM config WHERE id = 1`, (err, row) => {
+      if (!row) {
+         // Inicializa o banco com 10 vagas
+         db.run('INSERT INTO config (id, vagasDisponiveis) VALUES (?, ?)', [1, 10]);
+      }
+    })
+})
+
+
+/**/
+ipcMain.handle('verificar-login', async (event, { usuario, senha }) => {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM usuarios WHERE usuario = ? AND senha = ?';
+
+        db.get(query, [usuario, senha], (err, row) => {
+            if (err) {
+                console.error('Erro ao verificar login:', err.message);
+                resolve({ success: false, error: err.message });
+            } else if (row) {
+                resolve({ success: true });
+            } else {
+                resolve({ success: false });
+            }
+        });
+    });
+});
+
+/**/
+// Limite de vagas
+// Limite de vagas
+ipcMain.handle('cadastrar-veiculo', async (event, { modelo, placa }) => {
+  return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM config WHERE id = 1', (err, row) => {
+          if (err || !row) {
+              resolve({ success: false, message: 'Erro ao acessar o número de vagas.' });
+              return;
+          }
+
+          let vagasDisponiveis = row.vagasDisponiveis;
+
+          if (vagasDisponiveis <= 0) {
+              resolve({ success: false, message: 'Não há vagas disponíveis.' });
+              return;
+          }
+
+          const horarioEntrada = new Date().toISOString();
+
+          const query = 'INSERT INTO veiculos (modelo, placa, horario_entrada) VALUES (?, ?, ?)';
+          db.run(query, [modelo, placa, horarioEntrada], (err) => {
+              if (err) {
+                  console.error('Erro ao cadastrar veículo:', err.message);
+                  resolve({ success: false, message: 'Erro ao cadastrar veículo.' });
+              } else {
+                  // Atualiza o número de vagas no banco
+                  db.run('UPDATE config SET vagasDisponiveis = ? WHERE id = 1', [vagasDisponiveis - 1], (err) => {
+                      if (err) {
+                          console.error('Erro ao atualizar vagas:', err.message);
+                          resolve({ success: false, message: 'Erro ao atualizar vagas.' });
+                      } else {
+                          resolve({ success: true, vagasDisponiveis: vagasDisponiveis - 1 });
+                      }
+                  });
+              }
+          });
+      });
+  });
+});
+
+ipcMain.handle('obter-vagas', async () => {
+  return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM config WHERE id = 1', (err, row) => {
+          if (err || !row) {
+              resolve(10);  // Valor padrão de 10 vagas
           } else {
-              resolve({ success: false });
+              resolve(row.vagasDisponiveis);
           }
       });
   });
@@ -32,7 +103,8 @@ const createWindow = () => {
       fullscreen: true,
       webPreferences: {
         nodeIntegration: true,
-        contextIsolation: false
+        contextIsolation: false,
+        enableRemoteModule: true
       }
     });
 

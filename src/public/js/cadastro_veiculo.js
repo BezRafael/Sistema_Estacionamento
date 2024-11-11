@@ -1,3 +1,38 @@
+const { ipcRenderer } = require("electron");
+
+// Função para cadastrar veículo
+async function cadastrar_veiculo() {
+    const modelo = document.getElementById('modelo_veiculo').value;
+    const placa = document.getElementById('placa_veiculo').value;
+
+    if (!modelo || !placa) {
+        document.getElementById('status').textContent = 'Preencha todos os Campos!';
+        document.getElementById('status').style.color = 'lightcoral';
+        return;
+    }
+
+    const resultado = await ipcRenderer.invoke('cadastrar-veiculo', {modelo, placa});
+
+    if (resultado.success) {
+        document.getElementById('status').textContent = 'Veículo cadastrado com sucesso!';
+        document.getElementById('status').style.color = 'lightgreen';
+        document.getElementById('vagas_disponiveis').textContent = `Vagas Disponíveis: ${resultado.vagasDisponiveis}`;
+    } else {
+        document.getElementById('status').textContent = resultado.message;
+        document.getElementById('status').style.color = 'lightcoral';
+    }
+}
+
+// Ao carregar a página, busca o número de vagas disponíveis
+window.onload = async () => {
+    const vagasInicial = await ipcRenderer.invoke('obter-vagas');
+    document.getElementById('vagas_disponiveis').textContent = `Vagas Disponíveis: ${vagasInicial}`;
+};
+
+
+
+
+/*
 var totalVagas = 20;
 
 // Função disparada após o clique do botão cadastrar
@@ -86,7 +121,7 @@ function mostrar_veiculos() {
 }
 
 document.addEventListener('DOMContentLoaded', mostrar_veiculos);
-
+*/
 function abrir_lista() {
     window.location.href = "../views/lista_veiculos.html";
 }
@@ -100,7 +135,7 @@ function fecharApp() {
     const { ipcRenderer } = require('electron');
     ipcRenderer.send('fechar-app');
 };
-
+/*
 function remover_veiculo() {
     const placa_remover = document.getElementById('input_removerPlaca').value;
     if (!placa_remover) {
@@ -157,3 +192,4 @@ function remover_veiculo() {
 
     document.getElementById('input_removerPlaca').value = '';
 }
+*/

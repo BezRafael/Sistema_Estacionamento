@@ -1,34 +1,46 @@
-const ipcRenderer = require('electron');
 
+const { ipcRenderer } = require('electron');
+
+document.getElementById('botao_login').addEventListener('click', async () => {
+    console.log("Botão de login clicado"); // Teste de saída
+    const usuario = document.getElementById('usuario').value;
+    const senha = document.getElementById('senha').value;
+    
+    // Envia a solicitação de login para o processo principal
+    const resultado = await ipcRenderer.invoke('verificar-login', { usuario, senha });
+    
+    if (resultado.success) {
+        window.location.href = '../views/cadastro_veiculo.html';
+    } else {
+        document.getElementById('status').textContent = 'Erro ao Acessar!';
+        document.getElementById('status').style.color = 'lightcoral';
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const usuarioPadrao = 'Admin'
 const senhaPadrao = 'Admin'
 
 document.getElementById('botao_login').addEventListener('click', botaoEntrar);
+*/
 
 
 /*
-function botaoEntrar() {
-    const usuario = document.getElementById('usuario').value;
-    const senha = document.getElementById('senha').value;
-
-    ipcRenderer.invoke('verificar-login', { usuario, senha })
-        .then(response => {
-            const elementoStatus = document.getElementById('status');
-            if (response.success) {
-                elementoStatus.textContent = 'Bem Vindo!';
-                elementoStatus.style.color = 'lightgreen';
-                window.location.href = '../views/cadastro_veiculo.html';
-            } else {
-                elementoStatus.textContent = 'Dados Incorretos!';
-                elementoStatus.style.color = 'lightcoral';
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao verificar Login:', error);
-        });
-}
-*/
-
 function botaoEntrar(){
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
@@ -46,3 +58,4 @@ function botaoEntrar(){
         }
     }
 };
+*/

@@ -1,4 +1,36 @@
-//Importando o Sqlite3
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./src/data/estacionamento.db', (err) => {
+    if(err){
+        console.error('Erro ao conectar ao Banco de dados');
+    }else{
+        console.log('Database Conectado com Sucesso!');    
+    }
+});
+
+
+db.serialize(() =>{
+    db.run(
+        `CREATE TABLE IF NOT EXISTS usuarios(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario TEXT,
+            senha TEXT
+        )`);
+
+    db.run( 
+        `CREATE TABLE IF NOT EXISTS veiculos(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            modelo TEXT,
+            placa TEXT UNIQUE,
+            horario_entrada DATATIME,
+            horario_saida DATATIME
+        )`);
+});
+
+module.exports = db;
+
+
+/*
+///Importando o Sqlite3
 const sqlite3 = require('sqlite3').verbose()
 
 const { Module } = require('module');
@@ -29,3 +61,4 @@ db.serialize(() => {
 });
 
 module.exports = db;
+*/
