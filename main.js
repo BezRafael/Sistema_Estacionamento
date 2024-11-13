@@ -42,7 +42,6 @@ ipcMain.handle('verificar-login', async (event, { usuario, senha }) => {
 
 /**/
 // Limite de vagas
-// Limite de vagas
 ipcMain.handle('cadastrar-veiculo', async (event, { modelo, placa }) => {
   return new Promise((resolve, reject) => {
       db.get('SELECT * FROM config WHERE id = 1', (err, row) => {
@@ -92,6 +91,72 @@ ipcMain.handle('obter-vagas', async () => {
       });
   });
 });
+
+
+
+// Função para buscar todos os veículos
+ipcMain.handle('listar-veiculos', async () => {
+  return new Promise((resolve, reject) => {
+      const query = 'SELECT modelo, placa, horario_entrada FROM veiculos';
+      db.all(query, (err, rows) => {
+          if (err) {
+              console.error('Erro ao buscar veículos:', err.message);
+              resolve([]); // Retorna um array vazio em caso de erro
+          } else {
+              resolve(rows); // Retorna todos os veículos encontrados
+          }
+      });
+  });
+});
+
+/**/
+ipcMain.handle('remover-veiculo', async (event, placa) => {
+    return new Promise((resolve, reject) => {
+        // Busca o veículo no banco de dados pela placa
+        db.get('SELECT * FROM veiculos WHERE placa = ?', [placa], (err, veiculo) => {
+            if (err || !veiculo) {
+                resolve({ success: false, message: 'Veículo não encontrado.' });
+                return;
+            }
+
+            // Calcula o horário de saída e o valor a pagar com base no horário de entrada
+            const horarioSaida = new Date();
+            const horarioEntrada = new Date(veiculo.horario_entrada);
+            const tempoPermanencia = (horarioSaida - horarioEntrada) / (1000 * 60); // Tempo em minutos
+            const valorPorMinuto = 0.5; // Valor por minuto
+            const valorAPagar = (tempoPermanencia * valorPorMinuto).toFixed(2);
+
+            // Remove o veículo do banco de dados
+            db.run('DELETE FROM veiculos WHERE placa = ?', [placa], (err) => {
+                if (err) {
+                    resolve({ success: false, message: 'Erro ao remover o veículo.' });
+                } else {
+                    // Atualiza o número de vagas disponíveis
+                    db.get('SELECT vagasDisponiveis FROM config WHERE id = 1', (err, row) => {
+                        if (row) {
+                            const vagasAtualizadas = row.vagasDisponiveis + 1;
+                            db.run('UPDATE config SET vagasDisponiveis = ? WHERE id = 1', [vagasAtualizadas], (err) => {
+                                if (err) {
+                                    resolve({ success: false, message: 'Erro ao atualizar vagas.' });
+                                } else {
+                                    resolve({
+                                        success: true,
+                                        horarioSaida: horarioSaida.toLocaleTimeString(),
+                                        valorAPagar: valorAPagar,
+                                        vagasDisponiveis: vagasAtualizadas,
+                                    });
+                                }
+                            });
+                        } else {
+                            resolve({ success: false, message: 'Erro ao acessar vagas.' });
+                        }
+                    });
+                }
+            });
+        });
+    });
+});
+
 
 //Janela Principal
 const createWindow = () => {
